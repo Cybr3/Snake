@@ -7,15 +7,19 @@ class Map {
 public:
 	Map();
 	~Map();
+
+	void initialize();
+
 	void set_map();
-	char get_map();
+	void get_map();
+
 	
 private:
 	unsigned int height;
 	unsigned int width;
 	char border;
 
-	char map[31][21];
+	char map[32][22];
 
 	Snake snake;
 };

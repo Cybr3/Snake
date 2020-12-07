@@ -15,11 +15,15 @@ public:
 	void set_length();
 	unsigned int get_length();
 
+	char get_tail_figure();
+	char get_head_figure();
+
 private:
 	unsigned int snake_pos_x[100];
 	unsigned int snake_pos_y[100];
 
-	int tail_pos[100];
+	unsigned int length;
 
-	int length;
+	char head_figure;
+	char tail_figure;
 };

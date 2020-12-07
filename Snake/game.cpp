@@ -9,6 +9,7 @@ int main() {
 	bool game = true;
 
 	Map screen;
+	screen.initialize();
 
 	while (game == true) {
 		
