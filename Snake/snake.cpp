@@ -1,30 +1,42 @@
 #include "snake.h"
 
 Snake::Snake() {
-	head_pos[1];
-	tail_pos[99];
+	snake_pos_x[99];
+	snake_pos_y[99];
+	length = 0;
 }
 
 Snake::~Snake(){}
 
 void Snake::initialize() {
-	head_pos[0] = 15;
-	head_pos[1] = 15;
+	snake_pos_x[0] = 15;
+	snake_pos_y[0] = 15;
+}
+
+void Snake::set_head(unsigned int pos_x, unsigned int pos_y) {
+	snake_pos_x[0] = pos_x;
+	snake_pos_y[0] = pos_y;
 }
 
 void Snake::set_tail() {
+	
+}
+
+void Snake::set_length() {
+	length++;
+}
+
+unsigned int Snake::get_tail(unsigned int pos) {
+	return tail_pos[pos];
+}
+
+unsigned int Snake::get_head(){
+	return snake_pos_x[0], snake_pos_y[0];
 
 }
 
-char Snake::set_head() {
 
-}
 
-char Snake::get_tail() {
-	return
-}
-
-char Snake::get_head(){
-	return 
-
+unsigned int Snake::get_length(){
+	return length;
 }

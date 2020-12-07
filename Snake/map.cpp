@@ -4,8 +4,7 @@ Map::Map(){
 	width = 31;
 	height = 21;
 	border = char(221);
-	map[width][height];
-
+	map[31][21];
 	Snake snake;
 }
 
@@ -15,7 +14,9 @@ void Map::set_map() {
 	for (unsigned int y = 0; y < height; y++) {
 		for (unsigned int x = 0; x < width; x++) {
 			map[x][y] = ' ';
-			map[x][y] = 
+
+			if (x == && y ==)
+			
 			if (y == 0 || x == 0 || y == height - 1 || x == width - 1) { map[x][y] = border; }
 		}
 	}

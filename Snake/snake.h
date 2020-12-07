@@ -6,16 +6,20 @@ public:
 	~Snake();
 
 	void set_tail();
-	char get_tail();
+	unsigned int get_tail(unsigned int);
 	void initialize();
 
+	void set_head(unsigned int, unsigned int);
+	unsigned int get_head();
 
-	char set_head();
-	char get_head();
+	void set_length();
+	unsigned int get_length();
 
 private:
-	char head;
-	char tail;
-	unsigned int head_pos[2];
-	unsigned int tail_pos[100];
+	unsigned int snake_pos_x[100];
+	unsigned int snake_pos_y[100];
+
+	int tail_pos[100];
+
+	int length;
 };

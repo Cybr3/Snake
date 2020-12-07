@@ -11,6 +11,8 @@ int main() {
 	Map screen;
 
 	while (game == true) {
+		
+
 		screen.set_map();
 		screen.get_map();
 

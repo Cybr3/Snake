@@ -11,9 +11,11 @@ public:
 	char get_map();
 	
 private:
-	const unsigned int height;
-	const unsigned int width;
+	unsigned int height;
+	unsigned int width;
 	char border;
 
 	char map[31][21];
+
+	Snake snake;
 };
