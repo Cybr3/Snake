@@ -8,14 +8,14 @@ int main() {
 	
 	bool game = true;
 
-	Map screen;
-	screen.initialize();
+	Map frame;
+	frame.initialize();
 
 	while (game == true) {
 		
 
-		screen.set_map();
-		screen.get_map();
+		frame.set_map();
+		frame.get_map();
 
 
 		std::this_thread::sleep_for(200ms);

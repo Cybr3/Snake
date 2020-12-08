@@ -14,8 +14,8 @@ Snake::Snake() {
 Snake::~Snake(){}
 
 void Snake::initialize() {
-	snake_pos_x[0] = 15;
-	snake_pos_y[0] = 15;
+	snake_pos_x[0] = 3;
+	snake_pos_y[0] = 5;
 }
 
 void Snake::set_head(unsigned int pos_x, unsigned int pos_y) {
