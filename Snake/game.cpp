@@ -3,24 +3,33 @@
 
 #include "map.h"
 
+#include "game_logic.h"
+
 
 int main() {
-	
-	bool game = true;
-
 	Map frame;
-	frame.initialize();
+	Snake snake;
+	food snack;
 
-	while (game == true) {
-		
+	snake.initialize();
+	bool menu = true;
+	srand(time(NULL));
 
-		frame.set_map();
-		frame.get_map();
+	while (menu) {
 
 
-		std::this_thread::sleep_for(200ms);
-		system("CLS");
+		while (game) {
+			snake.set_head();
+			snake.set_tail();
+
+			frame.set_map(snake);
+			frame.get_map(snake);
+
+			logic();
+
+			std::this_thread::sleep_for(200ms);
+		}
 	}
-
+	return 0;
 }
 

@@ -5,25 +5,28 @@ public:
 	Snake();
 	~Snake();
 
-	void set_tail();
-	unsigned int get_tail(unsigned int);
-	void initialize();
-
-	void set_head(unsigned int, unsigned int);
-	unsigned int get_head();
-
-	void set_length();
-	unsigned int get_length();
+	void set_head();
+	void get_head(unsigned short*, unsigned short*);
 
 	char get_tail_figure();
 	char get_head_figure();
 
-private:
-	unsigned int snake_pos_x[100];
-	unsigned int snake_pos_y[100];
+	void initialize();
 
-	unsigned int length;
+	void last_move_function();
+
+	void set_tail();
+
+private:
+	unsigned short snake_head_x;
+	unsigned short snake_head_y;
+
+	unsigned short snake_tail_x[1000];
+	unsigned short snake_tail_y[1000];
 
 	char head_figure;
-	char tail_figure;
+
+	char last_move;
+
+	unsigned short length;
 };

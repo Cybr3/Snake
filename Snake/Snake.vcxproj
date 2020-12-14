@@ -141,9 +141,15 @@
   <ItemGroup>
     <ClCompile Include="game.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="food.cpp" />
+    <ClCompile Include="cursor.cpp" />
+    <ClCompile Include="game_logic.cpp" />
     <ClCompile Include="snake.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="food.h" />
+    <ClInclude Include="cursor.h" />
+    <ClInclude Include="game_logic.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="snake.h" />
   </ItemGroup>

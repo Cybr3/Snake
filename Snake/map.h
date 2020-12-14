@@ -1,5 +1,6 @@
 #pragma once
 #include "snake.h"
+#include "food.h"
 
 using namespace std;
 
@@ -8,18 +9,16 @@ public:
 	Map();
 	~Map();
 
-	void initialize();
+	void set_map(Snake);
+	void get_map(Snake);
 
-	void set_map();
-	void get_map();
-
-	
 private:
-	unsigned int height;
-	unsigned int width;
+	unsigned short height;
+	unsigned short width;
 	char border;
 
 	char map[32][22];
+	char old_map[32][22];
 
-	Snake snake;
+	bool first_run;
 };

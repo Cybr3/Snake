@@ -1,59 +1,101 @@
 #include <utility>
+#include <conio.h>
 #include "snake.h"
 
 
 Snake::Snake() {
-	snake_pos_x[99] = 0;
-	snake_pos_y[99] = 0;
-	length = 0;
+    snake_head_x = 0;
+    snake_head_y = 0;
 
-	head_figure = char(223);
-	tail_figure = char(223);
+    snake_tail_x[999] = {};
+    snake_tail_y[999] = {};
+
+    head_figure = char(254);
+
+    length = 0;
 }
 
-Snake::~Snake(){}
+Snake::~Snake() {}
 
 void Snake::initialize() {
-	snake_pos_x[0] = 3;
-	snake_pos_y[0] = 5;
+    snake_head_x = 10;
+    snake_head_y = 10;
 }
 
-void Snake::set_head(unsigned int pos_x, unsigned int pos_y) {
-	snake_pos_x[0] = pos_x;
-	snake_pos_y[0] = pos_y;
-}
-
-/*generierung der ganzen schlange inklusive des schwanzes mithilfe eines swap algorithmus*/
 void Snake::set_tail() {
-	unsigned int buffer_x = snake_pos_x[0];
-	unsigned int buffer_y = snake_pos_y[0];
+    snake_tail_x[0] = snake_head_x;
+    snake_tail_y[0] = snake_head_y;
 
-	for (unsigned int n = 0; n < length; n++) {
-		std::swap(snake_pos_x[n], buffer_x);
-		std::swap(snake_pos_y[n], buffer_y);
-	}
+    for (unsigned short l = 0; l < length; l++) {
+        std::swap(snake_tail_x[l], snake_tail_x[l + 1]);
+        std::swap(snake_tail_y[l], snake_tail_y[l + 1]);
+    }
 }
 
-void Snake::set_length() {
-	length++;
+//this is the whole movement logic for the snake
+void Snake::set_head() {
+    if (_kbhit()) {
+        char move = _getch();
+        switch (move) {
+        case 'w':
+            if (last_move != 's') {
+                snake_head_y--;
+                last_move = move;
+            }
+            else { last_move_function(); }
+            break;
+        case 'a':
+            if (last_move != 'd') {
+                snake_head_x--;
+                last_move = move;
+            }
+            else { last_move_function(); }
+            break;
+        case 's':
+            if (last_move != 'w') {
+                snake_head_y++;
+                last_move = move;
+            }
+            else { last_move_function(); }
+            break;
+        case 'd':
+            if (last_move != 'a') {
+                snake_head_x++;
+                last_move = move;
+            }
+            else { last_move_function(); }
+            break;
+        }
+    }
+    else { last_move_function(); }
 }
 
-unsigned int Snake::get_tail(unsigned int pos) {
-	return snake_pos_x[pos], snake_pos_y[pos];
+void Snake::last_move_function() {
+    switch (last_move) {
+    case 'w':
+        snake_head_y--;
+        break;
+    case 'a':
+        snake_head_x--;
+        break;
+    case 's':
+        snake_head_y++;
+        break;
+    case 'd':
+        snake_head_x++;
+        break;
+    }
 }
 
-unsigned int Snake::get_head(){
-	return snake_pos_x[0], snake_pos_y[0];
-}
-
-unsigned int Snake::get_length(){
-	return length;
+void Snake::get_head(unsigned short* head_x, unsigned short* head_y) {
+    *head_x = snake_head_x;
+    *head_y = snake_head_y;
 }
 
 char Snake::get_tail_figure() {
-	return tail_figure;
+    return head_figure;
 }
 
 char Snake::get_head_figure() {
-	return head_figure;
+    return head_figure;
 }

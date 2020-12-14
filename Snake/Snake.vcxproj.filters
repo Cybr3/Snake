@@ -24,12 +24,30 @@
     <ClCompile Include="map.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="food.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="cursor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="game_logic.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="snake.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="map.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="food.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="cursor.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game_logic.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
