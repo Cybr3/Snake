@@ -16,6 +16,9 @@ public:
 	void last_move_function();
 
 	void set_tail();
+	void get_tail(unsigned short*, unsigned short*);
+
+	unsigned short get_length();
 
 private:
 	unsigned short snake_head_x;

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void logic(Snake object_snake, Map object_map, food obejct_food) {
+void logic(Snake object_snake, Map object_map, food object_food, bool *game) {
 	unsigned short a = 0;
 	unsigned short b = 0;
 
@@ -13,14 +13,22 @@ void logic(Snake object_snake, Map object_map, food obejct_food) {
 
 	if (b == 0 || a == 0 || b == 20 || a == 30) {
 		object_snake.~Snake();
+		*game = false;
 	}
-	for (int n = 0; n < length; n++) {
-		if (snake_head_x == snake_tail_x[n] && snake_head_y == snake_tail_y[n]) {
 
+	for (int n = 0; n < object_snake.get_length(); n++) {
+		unsigned short tail_x = n;
+		unsigned short tail_y = n;
+
+		object_snake.get_tail(&tail_x, &tail_y);
+
+		if (a == tail_x && b == tail_y) {
+			object_snake.~Snake();
+			*game = false;
 		}
 	}
 
-
+}
 
 
 

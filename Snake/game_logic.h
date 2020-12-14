@@ -1,4 +1,4 @@
 #pragma once
 
 
-void logic();
+void logic(Snake, Map, food, bool*);

@@ -99,3 +99,12 @@ char Snake::get_tail_figure() {
 char Snake::get_head_figure() {
     return head_figure;
 }
+
+unsigned short Snake::get_length() {
+    return length;
+}
+
+void Snake::get_tail(unsigned short *x, unsigned short *y){
+    *x = snake_tail_x[*x];
+    *y = snake_tail_x[*y];
+}
