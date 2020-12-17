@@ -12,7 +12,7 @@ public:
 	bool get_active();
 
 	void get_food(unsigned short*, unsigned short*);
-	char get_food_figure();
+	char get_figure();
 
 
 

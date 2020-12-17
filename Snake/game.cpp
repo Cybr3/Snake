@@ -1,8 +1,10 @@
 ﻿#include <chrono>
 #include <thread>
 #include <conio.h>
+#include <cstdlib>
+#include <ctime>
 #include "map.h"
-
+#include "cursor.h"
 #include "game_logic.h"
 
 
@@ -11,29 +13,40 @@ int main() {
 	Snake snake;
 	food snack;
 
+	snack.initialize();
 	snake.initialize();
+
 	bool menu = true;
 	bool game = false;
+
+	bool first_run = true;
+	bool show_once = true;
+
 	srand(time(NULL));
 
+	unsigned int points = 0;
+
 	while (menu) {
+		ShowConsoleCursor(false);
+		if (first_run && show_once) {
+			cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << endl;
+			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << endl;
+			cout << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << endl;
 
-		cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << endl;
-		cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
-		cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
-		cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << endl;
-		cout << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
-		cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
-		cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << endl;
-
-		cout << endl << endl << "DO YOU WANT TO PLAY? [Y/N]";
-
+			cout << endl << endl << "DO YOU WANT TO PLAY? [Y/N]";
+			show_once = false;
+		}
 		if (_kbhit()){
 			char i = _getch();
 			switch (i) {
 			case 'y':
 				game = true;
 				menu = true;
+				first_run = false;
 				system("CLS");
 				break;
 			case 'n':
@@ -43,21 +56,43 @@ int main() {
 
 			}
 		}
-			
+				
 
 		while (game) {
+
+			if (snack.get_active() == false) {
+				snack.initialize();
+			}
+
 			snake.set_head();
 			snake.set_tail();
 
-			frame.set_map(snake);
-			frame.get_map(snake);
+			logic(&snake, &frame, &snack, &game, &points);
 
-			logic(snake, frame, snack, &game);
+			frame.set_map(snake, snack);
+			frame.get_map(snake, snack);
 
 			std::this_thread::sleep_for(200ms);
 		}
-		std::this_thread::sleep_for(2s);
-		system("CLS");
+
+
+		if (!game && !first_run) {
+			system("CLS");
+
+			cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << endl;
+			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << endl;
+			cout << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
+			cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << endl;
+
+
+			cout << "YOUR POINTS: " << points;
+
+			cout << endl << endl << "DO YOU WANT TO PLAY AGAIN? [Y/N]" << endl;
+
+		}
 	}
 
 	if (!game && !menu) {

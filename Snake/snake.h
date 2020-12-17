@@ -19,6 +19,7 @@ public:
 	void get_tail(unsigned short*, unsigned short*);
 
 	unsigned short get_length();
+	void set_length();
 
 private:
 	unsigned short snake_head_x;
@@ -32,4 +33,5 @@ private:
 	char last_move;
 
 	unsigned short length;
+
 };

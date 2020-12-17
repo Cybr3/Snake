@@ -9,8 +9,8 @@ public:
 	Map();
 	~Map();
 
-	void set_map(Snake);
-	void get_map(Snake);
+	void set_map(Snake&, food&);
+	void get_map(Snake&, food&);
 
 private:
 	unsigned short height;

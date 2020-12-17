@@ -13,6 +13,8 @@ Snake::Snake() {
     head_figure = char(254);
 
     length = 0;
+
+    last_move = ' ';
 }
 
 Snake::~Snake() {}
@@ -107,4 +109,8 @@ unsigned short Snake::get_length() {
 void Snake::get_tail(unsigned short *x, unsigned short *y){
     *x = snake_tail_x[*x];
     *y = snake_tail_x[*y];
+}
+
+void Snake::set_length() {
+    length++;
 }

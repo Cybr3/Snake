@@ -1,5 +1,6 @@
 #include "map.h"
 #include "cursor.h"
+
 #include <windows.h>
 #include <ConsoleApi2.h>
 
@@ -18,7 +19,7 @@ Map::Map() {
 Map::~Map() {}
 
 //generates the map which will be processed further on in get_map
-void Map::set_map(Snake snake) {
+void Map::set_map(Snake &snake, food &snack) {
 	unsigned short a;
 	unsigned short b;
 
@@ -28,8 +29,10 @@ void Map::set_map(Snake snake) {
 
 			a = 0;
 			b = 0;
-			snake.get_head(&a, &b);
+			snack.get_food(&a, &b);
+			if (x == a && y == b) { map[x][y] = snack.get_figure(); }
 
+			snake.get_head(&a, &b);
 			if (x == a && y == b) { map[x][y] = snake.get_head_figure(); }
 
 			if (y == 0 || x == 0 || y == height - 1 || x == width - 1) { map[x][y] = border; }
@@ -38,7 +41,7 @@ void Map::set_map(Snake snake) {
 }
 
 //prints the map in colors
-void Map::get_map(Snake snake) {
+void Map::get_map(Snake &snake, food &snack) {
 	unsigned short a;
 	unsigned short b;
 
@@ -49,13 +52,24 @@ void Map::get_map(Snake snake) {
 			for (unsigned short x = 0; x < width; x++) {
 				a = 0;
 				b = 0;
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 136);
-				if (y == 0 || x == 0 || y == height - 1 || x == width - 1) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); }
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 119);
+				if (y == 0 || x == 0 || y == height - 1 || x == width - 1) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8); }
+
+
+
+				snack.get_food(&a, &b);
+				if (x == a && y == b) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 116); }
+
+				a = x;
+				b = y;
+
+				for (int l = 0; l <= snake.get_length(); l++) {
+					if (x == a && y == b) { map[x][y] = 'x'; }
+				}
 
 				snake.get_head(&a, &b);
-				if ((x == a && y == b)) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 130);
-				}
+				if ((x == a && y == b)) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 122); }
+
 				cout << map[x][y];
 
 
@@ -75,15 +89,18 @@ void Map::get_map(Snake snake) {
 
 
 				if (map[x][y] != old_map[x][y]) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 136);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 119);
 
 					a = 0;
 					b = 0;
 
-					snake.get_head(&a, &b);
 
+					snack.get_food(&a, &b);
+					if (x == a && y == b) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 116); }
+
+					snake.get_head(&a, &b);
 					if (x == a && y == b) {
-						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 130);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 114);
 					}
 
 					setCursorPosition(x, y);

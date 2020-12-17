@@ -1,8 +1,9 @@
+#include <cstdlib>
 #include "food.h"
 
 
 food::food() {
-	active = false;
+	active = true;
 	figure = char(254);
 
 	food_pos_x = 0;
@@ -13,7 +14,6 @@ food::~food() {}
 
 void food::initialize() {
 	active = true;
-
 	food_pos_x = (rand() % 29) + 1;
 	food_pos_y = (rand() % 19) + 1;
 }
@@ -27,7 +27,7 @@ void food::get_food(unsigned short* x, unsigned short* y) {
 	*y = food_pos_y;
 }
 
-char food::get_food_figure() {
+char food::get_figure() {
 	return figure;
 }
 
