@@ -89,6 +89,10 @@ void Snake::last_move_function() {
     }
 }
 
+void Snake::set_length() {
+    length++;
+}
+
 void Snake::get_head(unsigned short* head_x, unsigned short* head_y) {
     *head_x = snake_head_x;
     *head_y = snake_head_y;
@@ -111,6 +115,3 @@ void Snake::get_tail(unsigned short *x, unsigned short *y){
     *y = snake_tail_x[*y];
 }
 
-void Snake::set_length() {
-    length++;
-}

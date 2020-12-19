@@ -53,7 +53,7 @@ void Map::get_map(Snake &snake, food &snack) {
 				a = 0;
 				b = 0;
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 119);
-				if (y == 0 || x == 0 || y == height - 1 || x == width - 1) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8); }
+				if (y == 0 || x == 0 || y == height - 1 || x == width - 1) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 136); }
 
 
 
@@ -94,6 +94,7 @@ void Map::get_map(Snake &snake, food &snack) {
 					a = 0;
 					b = 0;
 
+					if (y == 0 || x == 0 || y == height - 1 || x == width - 1) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 136); }
 
 					snack.get_food(&a, &b);
 					if (x == a && y == b) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 116); }
