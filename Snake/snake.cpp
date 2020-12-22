@@ -10,7 +10,7 @@ Snake::Snake() {
     snake_tail_x[999] = {};
     snake_tail_y[999] = {};
 
-    head_figure = char(254);
+    head_figure = '+';
 
     length = 0;
 
@@ -93,7 +93,7 @@ void Snake::set_length() {
     length++;
 }
 
-void Snake::get_head(unsigned short* head_x, unsigned short* head_y) {
+void Snake::get_head(unsigned short *head_x, unsigned short *head_y) {
     *head_x = snake_head_x;
     *head_y = snake_head_y;
 }
@@ -110,8 +110,8 @@ unsigned short Snake::get_length() {
     return length;
 }
 
-void Snake::get_tail(unsigned short *x, unsigned short *y){
-    *x = snake_tail_x[*x];
-    *y = snake_tail_x[*y];
+void Snake::get_tail(unsigned short *x, unsigned short *y, unsigned short pos){
+    *x = snake_tail_x[pos];
+    *y = snake_tail_y[pos];
 }
 

@@ -4,7 +4,7 @@
 
 food::food() {
 	active = true;
-	figure = char(254);
+	figure = 'o';
 
 	food_pos_x = 0;
 	food_pos_y = 0;

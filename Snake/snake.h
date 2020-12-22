@@ -16,7 +16,7 @@ public:
 	void last_move_function();
 
 	void set_tail();
-	void get_tail(unsigned short*, unsigned short*);
+	void get_tail(unsigned short*, unsigned short*,  unsigned short);
 
 	void set_length();
 	unsigned short get_length();

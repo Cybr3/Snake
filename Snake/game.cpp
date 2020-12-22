@@ -69,16 +69,17 @@ int main() {
 
 			logic(&snake, &frame, &snack, &game, &points);
 
-			frame.set_map(snake, snack);
-			frame.get_map(snake, snack);
+			frame.set_map(&snake, &snack);
+			frame.get_map();
 
 			std::this_thread::sleep_for(200ms);
 		}
 
 
-		if (!game && !first_run) {
+		if (!game) {
 			system("CLS");
-
+			setCursorPosition(0, 0);
+			ShowConsoleCursor(true);
 			cout << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << ' ' << endl;
 			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
 			cout << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << char(219) << char(219) << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << char(219) << char(219) << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << ' ' << endl;
